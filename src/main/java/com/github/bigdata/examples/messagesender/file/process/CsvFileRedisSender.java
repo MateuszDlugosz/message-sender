@@ -29,8 +29,8 @@ public final class CsvFileRedisSender implements FileSender<CsvFile> {
 
     @Override
     public void open() {
-        //jedis = new Jedis(redisHostname, redisPort);
-        //jedis.auth(redisPassword);
+        jedis = new Jedis(redisHostname, redisPort);
+        jedis.auth(redisPassword);
     }
 
     @Override
@@ -51,6 +51,6 @@ public final class CsvFileRedisSender implements FileSender<CsvFile> {
 
     @Override
     public void close() {
-        //jedis.close();
+        jedis.close();
     }
 }
