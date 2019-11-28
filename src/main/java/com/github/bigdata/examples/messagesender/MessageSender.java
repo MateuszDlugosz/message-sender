@@ -25,7 +25,7 @@ public final class MessageSender {
 
             LOGGER.info("Initializing components.");
             FileResolver fileResolver = getFileResolver();
-            FileReader<CsvFile> fileReader = getFileReader();
+            FileReader<CsvFile> fileReader = getFileReader(config);
             FileSender<CsvFile> fileSender = getFileSender(config);
 
             LOGGER.info("Resolving files.");
@@ -60,8 +60,8 @@ public final class MessageSender {
         return new CsvFileResolver();
     }
 
-    private static FileReader<CsvFile> getFileReader() {
-        return new CsvFileReader(",");
+    private static FileReader<CsvFile> getFileReader(Config config) {
+        return new CsvFileReader(config.getString(ConfigKey.READER_CSV_SEPARATOR.getKeyName()));
     }
 
     private static FileSender<CsvFile> getFileSender(Config config) {
